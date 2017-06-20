@@ -2,7 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveDict } from 'meteor/reactive-dict';
 
-import { Task } from '../api/classes/task.js';
+import Task from '../api/classes/task';
+import Tasks from '../api/collections/tasks';
 
 import './task.js';
 import './body.html';
@@ -43,7 +44,7 @@ Template.body.events({
       owner: Meteor.userId(),
       username: Meteor.user().username,
     });
-    task.save();
+    task.create();
 
     // Clear form
     target.text.value = '';
