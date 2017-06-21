@@ -12,17 +12,8 @@ Template.task.helpers({
 });
 
 Template.task.events({
-  'click .toggle-checked'() {
-    // Set the checked property to the opposite of its current value
-    task = Task.findOne({_id: this._id});
-    task.setChecked(!this.checked);
-  },
   'click .delete'() {
-    task = Task.findOne({_id: this._id});
+    task = Task.find({_id: this._id});
     task.delete();
-  },
-  'click .toggle-private'() {
-    task = Task.findOne({_id: this._id});
-    task.setPrivate(!this.private);
   },
 });

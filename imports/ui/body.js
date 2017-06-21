@@ -10,18 +10,12 @@ import './body.html';
 
 Template.body.onCreated(function bodyOnCreated() {
   this.state = new ReactiveDict();
-  Meteor.subscribe('tasks');
+  TAPi18n.subscribe("tasks");
 });
 
 Template.body.helpers({
   tasks() {
-    const instance = Template.instance();
-    if (instance.state.get('hideCompleted')) {
-      // If hide completed is checked, filter tasks
-      return Tasks.find({ checked: { $ne: true } }, { sort: { createdAt: -1 } });
-    }
-    // Otherwise, return all of the tasks
-    return Tasks.find({}, { sort: { createdAt: -1 } });
+    return Tasks.find();
   },
   incompleteCount() {
     return Tasks.find({ checked: { $ne: true } }).count();
@@ -40,9 +34,7 @@ Template.body.events({
     // Insert a task into the collection
     task = new Task({
       text: text,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
+      i18n: {pl: {text: 'Dupa'}}
     });
     task.create();
 

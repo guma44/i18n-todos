@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
+import Tasks from './collections/tasks';
 import Task from './classes/task';
 
+TAPi18n.conf.supported_languages = ['en', 'pl'];
 
 if (Meteor.isServer) {
-  // This code only runs on the server
-  // Only publish tasks that are public or belong to the current user
-  Meteor.publish('tasks', function() {
-    return Task.find();
+  TAPi18n.publish('tasks', function() {
+    return Tasks.i18nFind();
   });
 }

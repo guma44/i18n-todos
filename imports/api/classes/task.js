@@ -21,22 +21,18 @@ const Task = Class.create({
     name: 'Task',
     collection: Tasks,
     fields: {
-        owner: {
-            type: String
-        },
-        username: {
-            type: String
-        },
         text: {
             type: String
         },
-        checked: {
-            type: Boolean,
-            default: false
+        type: {
+            type: String,
+            default: "Task"
         },
-        private: {
-            type: Boolean,
-            default: true
+        i18n: {
+            type: Object,
+            default() {
+                return {};
+            }
         }
     },
     events: {
@@ -45,6 +41,10 @@ const Task = Class.create({
     },
     meteorMethods: {
         create() {
+            return this.save();
+        },
+        translateTo(language, translationData) {
+            this.i18n[language] = translationData;
             return this.save();
         },
         delete() {

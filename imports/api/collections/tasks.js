@@ -1,4 +1,3 @@
-import { Mongo } from 'meteor/mongo';
 
-const Tasks = new Mongo.Collection('tasks');
+const Tasks = new TAPi18n.Collection('tasks');
 export default Tasks;

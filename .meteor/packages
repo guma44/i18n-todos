@@ -25,3 +25,5 @@ msavin:mongol
 jagi:astronomy
 shell-server
 dynamic-import
+tap:i18n-db
+tap:i18n-ui
